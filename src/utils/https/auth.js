@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = process.env.NEXT_PUBLIC_ANALYTICS_ID;
+const baseUrl = "https://movie-ticket-be-fa755f297c1f.herokuapp.com";
 
 export const register = (email, password, controller) => {
   const body = {
