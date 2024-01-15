@@ -42,40 +42,47 @@ function Movies() {
 
   const moviesController = useMemo(
     () => new AbortController(),
-    []
+    [sort, page, search]
   );
   const handleNavigate = (url) => router.push(url);
 
-  useEffect(() => {
-    const fetching = async (page = 1, search = "", sort = "") => {
-      const params = {
-        limit: 8,
-        page,
-        search,
-        sort,
-      };
-      try {
-        setLoading(true);
-        console.log(`page : ${page}`);
-        const result = await getMovies(params, moviesController);
-        // console.log(result);
-        setDataMovies(result.data.data);
-        setMeta({
-          ...meta,
-          limit: result.data.limit,
-          page: result.data.page,
-          totalpage: result.data.totalpage,
-          totaldata: result.data.totaldata,
-        });
-        setLoading(false);
-      } catch (error) {
-        // console.log(error);
-      }
+  const fetching = async (page = 1, search = "", sort = "") => {
+    const params = {
+      limit: 8,
+      page,
+      search,
+      sort,
     };
+    try {
+      setLoading(true);
+      console.log(`page : ${page}`);
+      const result = await getMovies(params, moviesController);
+      // console.log(result);
+      setDataMovies(result.data.data);
+      setMeta({
+        ...meta,
+        limit: result.data.limit,
+        page: result.data.page,
+        totalpage: result.data.totalpage,
+        totaldata: result.data.totaldata,
+      });
+      setLoading(false);
+    } catch (error) {
+      // console.log(error);
+    }
+  };
 
+  const addMovie = (id, name) => {
+    dispatch(orderAction.resetOrder());
+    const payload = { id: id, name: name };
+    dispatch(orderAction.addMovieId(payload));
+    handleNavigate(`/movies/${id}`);
+  };
+
+  useEffect(() => {
     if (!router.isReady) return;
     fetching(page, search, sort);
-  }, [sort, page, search, router.isReady, moviesController, meta]);
+  }, [sort, page, search, router.isReady]);
 
   useEffect(() => {
     getGenre(controller)
@@ -87,7 +94,7 @@ function Movies() {
         setCatLoad(false);
         console.log(err);
       });
-  }, [controller]);
+  }, []);
 
   if (!isLoading && page > meta.totalpage)
     push({ query: { ...router.query, page: 1 } });
