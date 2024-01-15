@@ -29,7 +29,7 @@ function CreateSchedule() {
 
   const [isLoading, setLoading] = useState(false);
   const [dataCategory, setDataCategory] = useState([]);
-  const [category, setCategory] = useState(["Horror", "Action", "Drama", "Thriller", "Comedy", "Romance"]);
+  const [category, setCategory] = useState([]);
   const [location, setLocation] = useState("CGV Jakarta Selatan");
   const [teather, setTeather] = useState(0);
   const [addTime, setAddTime] = useState("");
