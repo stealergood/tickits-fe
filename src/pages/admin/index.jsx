@@ -112,9 +112,13 @@ function CreateSchedule() {
       if (result && result.data && result.data.data) {
         console.log("TEST");
         createSchedules(result.data.data.id);
+        alert("Success create movie");
+        setLoading(false);
       }
     } catch (error) {
       console.log(error);
+      alert("Failed to create movie");
+      setLoading(false);
     }
   };
 
