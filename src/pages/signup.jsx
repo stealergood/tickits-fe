@@ -31,7 +31,7 @@ function Signup(props) {
     if (router.query.email) {
       setFormData({ ...formData, email: router.query.email });
     }
-  }, [router.isReady]);
+  }, [router.isReady, router.query.email, formData]);
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
