@@ -11,6 +11,30 @@ import Layout from '@/components/Layout';
 import { orderAction } from '@/redux/slice/order';
 import { getMovies } from '@/utils/https/movies';
 
+export async function getStaticProps(ctx) {
+  try {
+    const controller = new AbortController();
+    const result = await getMovies(
+      { limit: 10, page: 1, search: "" },
+      controller
+    );
+    return {
+      props: {
+        error: "",
+        movies: result.data.data,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      props: {
+        error,
+        movies: [],
+      },
+    };
+  }
+}
+
 function Home({ movies, error }) {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -253,28 +277,6 @@ function Home({ movies, error }) {
   );
 }
 
-export async function getStaticProps(ctx) {
-  try {
-    const controller = new AbortController();
-    const result = await getMovies(
-      { limit: 10, page: 1, search: "" },
-      controller
-    );
-    return {
-      props: {
-        error: "",
-        movies: result.data.data,
-      },
-    };
-  } catch (error) {
-    console.log(error);
-    return {
-      props: {
-        error,
-        movies: [],
-      },
-    };
-  }
-}
+
 
 export default Home;
