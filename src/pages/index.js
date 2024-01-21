@@ -46,6 +46,7 @@ function Home({ movies, error }) {
   };
 
   const [email, setEmail] = useState("");
+  const [isHover, setIsHover] = useState(false);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -122,11 +123,13 @@ function Home({ movies, error }) {
           </div>
         </section>
 
-        <div className="mw-global global-px flex gap-4 pt-1 pb-16 overflow-x-scroll overflow-y-clip bg-accent no-scrollbar relative h-fit">
+        <div className={`mw-global global-px flex gap-4 pt-1 pb-16 overflow-x-scroll overflow-y-clip bg-accent no-scrollbar relative ${isHover === true ? 'h-[33rem]' : 'h-fit'}`}>
           {movies.map(({ category, image, movie_name }, idx) => (
             <div className="group flex-shrink-0 w-56" key={idx}>
               <div
                 className={`p-8 w-56 bg-white/20 border-2 border-white rounded-md flex flex-col text-center gap-5 hover:bg-white group-hover:absolute group-hover:shadow-list-movie z-10`}
+                onMouseEnter={() => setIsHover(true)}
+                onMouseLeave={() => setIsHover(false)}
               >
                 <div className="w-36 h-56 relative">
                   <Image
