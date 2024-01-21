@@ -122,7 +122,7 @@ function Home({ movies, error }) {
           </div>
         </section>
 
-        <div className="mw-global global-px flex gap-4 pt-1 pb-16 overflow-x-scroll overflow-y-clip bg-accent no-scrollbar relative">
+        <div className="mw-global global-px flex gap-4 pt-1 pb-16 overflow-x-scroll overflow-y-clip bg-accent no-scrollbar relative h-fit">
           {movies.map(({ category, image, movie_name }, idx) => (
             <div className="group flex-shrink-0 w-56" key={idx}>
               <div
