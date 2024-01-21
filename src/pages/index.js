@@ -167,7 +167,7 @@ function Home({ movies, error }) {
             </div>
           ))}
         </div>
-        <section className="mw-global global-px pt-16 bg-white">
+        {/* <section className="mw-global global-px pt-16 bg-white">
           <div className="flex justify-between text-primary py-5">
             <div className="font-bold text-2xl flex flex-col gap-3 text-primary-title">
               <p>Upcoming Movies</p>
@@ -241,7 +241,7 @@ function Home({ movies, error }) {
               </button>
             </div>
           ))}
-        </div>
+        </div> */}
         <section className="mw-global global-px my-20">
           <div className="flex flex-col gap-12 p-10 rounded-lg items-center justify-center shadow-[0px_16px_32px_0px_#BABABA4D] text-center">
             <div className="flex flex-col items-center justify-center gap-2">
